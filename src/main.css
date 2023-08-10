@@ -1,0 +1,64 @@
+/* Copyright 2023 iiPython */
+
+/* Taken from DmmD.css */
+:root {
+    --c-red: #FF4F4F;
+    --c-gray: #8F8F8F;
+    --c-green: #4FFF4F;
+}
+
+/* Normal styles */
+html, body {
+    height: 100%;
+    color: #fefefe;
+    background-color: #000;
+    font-family: "Quicksand", sans-serif;
+}
+table {
+    border: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-spacing: 10px;
+    transform: translateX(-50%) translateY(-50%);
+}
+td {
+    padding: 10px;
+    position: relative;
+    border: 1px solid #fff;
+}
+td p {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+td p.state  {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+td p.no-margin {
+    margin-bottom: 0px;
+}
+a {
+    color: #fefefe;
+    text-decoration: none;;
+}
+a:hover {
+    color: #2F7FBF;
+    text-decoration: underline;
+}
+.status-container {
+    display: flex;
+    gap: 3px;
+}
+.indicator {
+    height: 20px;
+    width: 10px;
+}
+
+/* Colored CSS styles */
+.i-down { background-color: var(--c-red); }
+.i-unknown { background-color: var(--c-gray); }
+.i-online { background-color: var(--c-green); }
+.color-red { color: var(--c-red); }
+.color-green { color: var(--c-green); }
