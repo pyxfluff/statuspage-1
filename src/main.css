@@ -56,6 +56,18 @@ a:hover {
     width: 10px;
 }
 
+/* Popper popups */
+div.tooltip {
+    z-index: 999;
+    padding: 10px;
+    background-color: #000;
+    border: 1px solid #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+div.tooltip p {
+    margin: 0px;
+}
+
 /* Colored CSS styles */
 .i-down { background-color: var(--c-red); }
 .i-unknown { background-color: var(--c-gray); }
