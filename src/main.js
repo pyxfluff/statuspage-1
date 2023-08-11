@@ -62,7 +62,7 @@ function add_service(service, success, logs) {
             // Create tooltip
             let tooltip = document.createElement("div");
             tooltip.innerHTML = `
-                <p>${new Date(Number(box.getAttribute("timestamp")) * 1000).toLocaleString()}</p>
+                <p>${new Date(Number(box.getAttribute("timestamp"))).toLocaleString()}</p>
                 <p>${box.getAttribute("ping")}ms</p>
             `;
             tooltip.role = "tooltip";
