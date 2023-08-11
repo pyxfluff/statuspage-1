@@ -2,6 +2,7 @@
 
 # Modules
 import os
+import sys
 import json
 import time
 from pathlib import Path
@@ -43,8 +44,9 @@ for service in urls:
         write_log(service["name"], "down", 0)
 
 # Commit results to repository
-os.system("git config --global user.name 'statuspage'")
-os.system("git config --global user.email ben@iipython.dev")
-os.system("git add -A --force logs/")
-os.system("git commit -am '[Automated] Update system status'")
-os.system("git push")
+if "--no-commit" not in sys.argv:
+    os.system("git config --global user.name 'statuspage'")
+    os.system("git config --global user.email ben@iipython.dev")
+    os.system("git add -A --force logs/")
+    os.system("git commit -am '[Automated] Update system status'")
+    os.system("git push")
