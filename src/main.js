@@ -2,7 +2,6 @@
 
 // Initialization
 const table = document.getElementById("table").firstElementChild;
-window.poppers = {};
 
 // Handle writing logs to the screen
 function add_service(service, success, logs) {
@@ -49,11 +48,11 @@ function add_service(service, success, logs) {
         // Handle hovering
         let service_id = service.name.replace(" ", "-");
         function unregisterPopup() {
-            let tooltip = document.getElementById(service_id);
+            let tooltip = document.getElementById("tooltip");
             if (tooltip) tooltip.remove();
-            if (window.poppers[service_id]) {
-                window.poppers[service_id].destroy();
-                delete window.poppers[service_id];
+            if (window.popper) {
+                window.popper.destroy();
+                delete window.popper;
             }
         }
         box.addEventListener("mouseover", () => {
@@ -66,12 +65,12 @@ function add_service(service, success, logs) {
                 <p>${box.getAttribute("ping")}ms</p>
             `;
             tooltip.role = "tooltip";
-            tooltip.id = service_id;
+            tooltip.id = "tooltip";
             tooltip.classList.add("tooltip")
             box.appendChild(tooltip);
 
             // Handle Popper element
-            window.poppers[service_id] = Popper.createPopper(box, tooltip, { modifiers: [{ name: "offset", options: { offset: [0, 12] } }] });
+            window.popper = Popper.createPopper(box, tooltip, { modifiers: [{ name: "offset", options: { offset: [0, 12] } }] });
         });
         box.addEventListener("mouseleave", unregisterPopup);
 
