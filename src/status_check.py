@@ -1,6 +1,7 @@
 # Copyright 2023 iiPython
 
 # Modules
+import os
 import json
 import time
 from pathlib import Path
@@ -10,6 +11,8 @@ from requests import get
 # Initialization
 root_dir = Path(__file__).parent.parent
 urls_json, logs_folder = root_dir / "urls.json", root_dir / "logs"
+
+print(os.getcwd(), os.listdir())
 
 with open(urls_json, "r") as fh:
     urls = json.loads(fh.read())
