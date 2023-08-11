@@ -1,4 +1,8 @@
 [
-    {"name": "CDN", "url": "https://cdn.iipython.dev"},
-    {"name": "Non-existant", "url": "https://what.the.fuck"}
+    {"name": "Main site", "url": "https://iipython.dev"},
+    {"name": "Legacy site", "url": "https://old.iipython.dev"},
+    {"name": "Weather Archive", "url": "https://weather.iipython.dev"},
+    {"name": "Geesecraft Archives", "url": "https://gc.iipython.dev"},
+    {"name": "Geesecraft Map", "url": "https://map.iipython.dev"},
+    {"name": "CDN", "url": "https://cdn.iipython.dev"}
 ]

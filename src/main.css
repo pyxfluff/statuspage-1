@@ -46,6 +46,20 @@ a:hover {
     color: #2F7FBF;
     text-decoration: underline;
 }
+footer {
+    left: 10px;
+    bottom: 10px;
+    position: absolute;
+}
+footer p {
+    margin: 0px;
+}
+h3#header {
+    top: 10px;
+    left: 10px;
+    margin: 0px;
+    position: absolute;
+}
 .status-container {
     display: flex;
     gap: 3px;
