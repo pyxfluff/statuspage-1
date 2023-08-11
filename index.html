@@ -1,15 +1,73 @@
 <!doctype html>
 <html lang = "en">
     <head>
-        <meta charset = "utf-8">
+        <meta charset = "utf-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale=1" />
+        <meta name = "description" content = "Status page for all of iiPython's web services. If something goes offline, this will be the first to show it." />
 
         <!-- Fonts -->
         <link rel = "preconnect" href = "https://fonts.googleapis.com">
         <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-        <link href = "https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel = "stylesheet">
 
         <!-- CSS --> 
-        <link rel = "stylesheet" href = "./src/main.css">
+        <style type = "text/css">
+            html, body {
+                color: #fefefe;
+                background-color: #000;
+                font-family: "Quicksand", sans-serif;
+            }
+            table, #spinner {
+                border: none;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                border-spacing: 10px;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            a {
+                color: #fefefe;
+                text-decoration: none;
+            }
+            footer {
+                left: 10px;
+                bottom: 10px;
+                position: absolute;
+            }
+            footer p {
+                margin: 0px;
+            }
+            h3#header {
+                top: 10px;
+                left: 10px;
+                margin: 0px;
+                position: absolute;
+            }
+
+            /* Loading spinner */
+            #spinner {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+            }
+            #spinner:after {
+                content: " ";
+                display: block;
+                width: 22px;
+                height: 22px;
+                margin: 8px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                border-color: #fff transparent #fff transparent;
+                animation: loading 1.2s linear infinite;
+            }
+            @keyframes loading {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+
+        <!-- Icon & page title -->
+        <link rel = "icon" type = "image/x-icon" href = "./favicon.ico">
         <title>Statuspage</title>
     </head>
     <body>
@@ -20,8 +78,16 @@
         </table>
         <footer><p>Copyright (c) 2023 <a href = "https://iipython.dev">iiPython</a></p></footer>
 
+        <!-- Deferred CSS -->
+        <link rel = "preload" href = "https://fonts.googleapis.com/css2?family=Quicksand&display=swap" as = "style" onload = "this.onload=null;this.rel='stylesheet'">
+        <link rel = "preload" href = "./src/main.css" as = "style" onload = "this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel = "stylesheet" href = "https://fonts.googleapis.com/css2?family=Quicksand&display=swap">
+            <link rel = "stylesheet" href = "./src/main.css">
+        </noscript>
+
         <!-- JS -->
-        <script src = "https://unpkg.com/@popperjs/core@2"></script>
-        <script src = "./src/main.js"></script>
+        <script src = "https://unpkg.com/@popperjs/core@2" async></script>
+        <script src = "./src/main.js" async></script>
     </body>
 </html>
