@@ -11,8 +11,8 @@ from requests import get
 # Initialization
 root_dir = Path(__file__).parent.parent
 urls_json, logs_folder = root_dir / "urls.json", root_dir / "logs"
-
-print(os.getcwd(), os.listdir())
+if not (logs_folder.is_dir()):
+    os.mkdir(logs_folder)
 
 with open(urls_json, "r") as fh:
     urls = json.loads(fh.read())
@@ -41,3 +41,10 @@ for service in urls:
 
     except Exception:
         write_log(service["name"], "down", 0)
+
+# Commit results to repository
+os.system("git config --global user.name 'statuspage'")
+os.system("git config --global user.email ben@iipython.dev")
+os.system("git add -A --force logs/")
+os.system("git commit -am '[Automated] Update system status'")
+os.system("git push")
