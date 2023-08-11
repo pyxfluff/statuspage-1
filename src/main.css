@@ -13,7 +13,7 @@ html, body {
     background-color: #000;
     font-family: "Quicksand", sans-serif;
 }
-table {
+table, #spinner {
     border: none;
     position: absolute;
     left: 50%;
@@ -67,6 +67,28 @@ h3#header {
 .indicator {
     height: 20px;
     width: 10px;
+}
+
+/* Loading spinner */
+#spinner {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+#spinner:after {
+    content: " ";
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: loading 1.2s linear infinite;
+}
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Popper popups */

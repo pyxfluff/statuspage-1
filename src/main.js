@@ -12,6 +12,7 @@ function add_service(service, success, logs) {
         header = document.createElement("p"),
         container = document.createElement("div");
 
+    tr.style.display = "none";
     container.className = "status-container";
     tr.append(td)
     td.append(header, container);
@@ -46,7 +47,6 @@ function add_service(service, success, logs) {
         container.appendChild(box);
 
         // Handle hovering
-        let service_id = service.name.replace(" ", "-");
         function unregisterPopup() {
             let tooltip = document.getElementById("tooltip");
             if (tooltip) tooltip.remove();
@@ -101,4 +101,8 @@ async function write_logs(service) {
 (async () => {
     let urls = await (await fetch("./urls.json")).json();
     for (let url of urls) await write_logs(url);
+
+    // Loading complete
+    document.getElementById("spinner").remove();
+    for (let tr of document.getElementsByTagName("tr")) tr.style.display = "block";
 })();
