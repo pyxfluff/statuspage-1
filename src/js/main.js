@@ -71,7 +71,7 @@ function add_service(service, success, logs) {
             tooltip.role = "tooltip";
             tooltip.id = "tooltip";
             tooltip.classList.add("tooltip")
-            box.appendChild(tooltip);
+            container.appendChild(tooltip);
 
             // Handle Popper element
             window.popper = Popper.createPopper(box, tooltip, { modifiers: [{ name: "offset", options: { offset: [0, 12] } }] });
