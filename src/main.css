@@ -49,6 +49,9 @@ div.tooltip {
 div.tooltip p {
     margin: 0px;
 }
+[data-darkreader-mode = "dynamic"] div.tooltip {
+    background-color: #181a1b;
+}
 
 /* Colored CSS styles */
 .i-down { background-color: var(--c-red); }
