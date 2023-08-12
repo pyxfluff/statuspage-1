@@ -36,6 +36,10 @@ a:hover {
 .indicator {
     height: 20px;
     width: 10px;
+    opacity: .75;
+}
+.indicator:hover {
+    opacity: 1;
 }
 
 /* Popper popups */
