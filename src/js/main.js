@@ -2,6 +2,10 @@
 
 // Initialization
 const table = document.getElementById("table").firstElementChild;
+const main_css = document.getElementById("maincss");
+
+// Handle CSS deferring
+main_css.addEventListener("load", () => { main_css.rel = "stylesheet"; });
 
 // Handle writing logs to the screen
 function add_service(service, success, logs) {
@@ -103,6 +107,7 @@ async function write_logs(service) {
     for (let url of urls) await write_logs(url);
 
     // Loading complete
+    main_css.rel = "stylesheet";
     document.getElementById("spinner").remove();
     for (let tr of document.getElementsByTagName("tr")) tr.style.display = "block";
 })();

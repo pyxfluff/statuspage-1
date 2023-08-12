@@ -5,9 +5,6 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1" />
         <meta name = "description" content = "Status page for all of iiPython's web services. If something goes offline, this will be the first to show it." />
 
-        <!-- Fonts -->
-        <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-
         <!-- CSS --> 
         <style type = "text/css">
             @font-face {
@@ -86,7 +83,7 @@
         <footer><p>Copyright (c) 2023 <a href = "https://iipython.dev">iiPython</a></p></footer>
 
         <!-- Deferred CSS -->
-        <link rel = "preload" href = "./src/main.css" as = "style" onload = "this.onload=null;this.rel='stylesheet'">
+        <link rel = "preload" href = "./src/main.css" as = "style" id = "maincss">
         <noscript><link rel = "stylesheet" href = "./src/main.css"></noscript>
 
         <!-- JS -->
