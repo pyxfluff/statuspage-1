@@ -46,7 +46,7 @@ for service in urls:
 # Commit results to repository
 if "--no-commit" not in sys.argv:
     os.system("git config --global user.name 'statuspage'")
-    os.system("git config --global user.email ben@iipython.dev")
+    os.system("git config --global user.email status@iipython.dev")
     os.system("git add -A --force logs/")
     os.system("git commit -am '[Automated] Update system status'")
     os.system("git push")
