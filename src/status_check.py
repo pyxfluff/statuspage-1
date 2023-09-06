@@ -32,6 +32,8 @@ def write_log(name: str, state: str, latency: float) -> None:
         fh.write("\n".join(frames))
 
 # Perform all status checks
+os.system("git checkout gh-pages")
+os.system("git pull origin gh-pages")
 for service in urls:
     try:
         resp = get(service["url"], timeout = 10)
@@ -51,8 +53,6 @@ for service in urls:
 if "--no-commit" not in sys.argv:
     os.system("git config --global user.name 'statuspage'")
     os.system("git config --global user.email status@iipython.dev")
-    os.system("git checkout gh-pages")
-    os.system("git pull origin gh-pages")
     os.system("git add -A --force logs/")
     os.system("git commit -am '[Automated] Update system status'")
     os.system("git push --force -u origin main:gh-pages")
