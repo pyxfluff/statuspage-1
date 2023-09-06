@@ -38,7 +38,11 @@ for service in urls:
         if resp.status_code != 200:
             raise Exception()
 
-        write_log(service["name"], "online", round(resp.elapsed.total_seconds() * 1000, 2))
+        write_log(
+            service["name"],
+            "online",
+            round(resp.elapsed.total_seconds() * 1000, 2)
+        )
 
     except Exception:
         write_log(service["name"], "down", 0)
@@ -49,4 +53,4 @@ if "--no-commit" not in sys.argv:
     os.system("git config --global user.email status@iipython.dev")
     os.system("git add -A --force logs/")
     os.system("git commit -am '[Automated] Update system status'")
-    os.system("git push")
+    os.system("git push --force -u origin main:gh-pages")
