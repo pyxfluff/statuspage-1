@@ -24,7 +24,7 @@ def write_log(name: str, state: str, latency: float) -> None:
         with open(full_path, "r") as fh:
             frames = fh.read().splitlines()
 
-    frames.append(f"{time.time() * 1000} {state} {latency}")
+    frames.append(f"{round(time.time() * 1000)} {state} {latency}")
     if len(frames) > 48:
         frames = frames[1:]
 
