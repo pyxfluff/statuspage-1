@@ -1,9 +1,8 @@
 name: Minify HTML
-run-name: Minify HTML [gh-pages branch]
 on:
   push:
-    branches:
-      - "main"
+    paths:
+      - "src/**"
 
 jobs:
   checkout-minify-push:
