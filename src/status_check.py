@@ -51,6 +51,8 @@ for service in urls:
 if "--no-commit" not in sys.argv:
     os.system("git config --global user.name 'statuspage'")
     os.system("git config --global user.email status@iipython.dev")
+    os.system("git checkout gh-pages")
+    os.system("git pull origin gh-pages")
     os.system("git add -A --force logs/")
     os.system("git commit -am '[Automated] Update system status'")
     os.system("git push --force -u origin main:gh-pages")
