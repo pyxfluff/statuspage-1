@@ -2,7 +2,7 @@ name: Minify HTML
 on:
   push:
     paths:
-      - "src/**"
+      - "src/index.html"
 
 jobs:
   checkout-minify-push:
