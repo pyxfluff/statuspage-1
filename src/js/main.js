@@ -85,10 +85,9 @@ function add_service(service, success, logs) {
 
 async function write_logs(service) {
     try {
-        let resp = await fetch(`./logs/${service.name}.log.gz`);
+        let resp = await fetch(`./logs/${service.name}.log`);
         if (!resp.ok) throw new Error(`Non-200 from service log '${service.name}'!`);
-        let decompressed = await new Response(resp.body.pipeThrough(new DecompressionStream("gzip")));
-        add_service(service, true, (await decompressed.text()).split("\n"));
+        add_service(service, true, (await resp.text()).split("\n"));
 
     } catch (e) {
         console.warn(e);
