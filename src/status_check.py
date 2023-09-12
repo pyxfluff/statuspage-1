@@ -22,18 +22,6 @@ if log_file.is_file():
     with gzip.open(log_file, "r") as fh:
         status_info = json.loads(fh.read())
 
-def write_log(name: str, state: str, latency: float) -> None:
-    full_path, frames =  f"logs/{name}.log", []
-    with open(full_path, "r") as fh:
-        frames = fh.read().splitlines()
-
-    frames.append(f"{round(time.time() * 1000)} {state} {latency}")
-    if len(frames) > 48:
-        frames = frames[1:]
-
-    with open(full_path, "w+") as fh:
-        fh.write("\n".join(frames))
-
 # Perform all status checks
 time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
@@ -43,11 +31,6 @@ for name, url in urls.items():
         if resp.status_code != 200:
             raise Exception()
 
-        write_log(
-            name,
-            "online",
-            round(resp.elapsed.total_seconds() * 1000, 2)
-        )
         status_info[time_key][name] = [
             1,
             round(resp.elapsed.total_seconds() * 1000, 1)
