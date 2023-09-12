@@ -37,29 +37,28 @@ def write_log(name: str, state: str, latency: float) -> None:
 # Perform all status checks
 time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
-for service in urls:
+for name, url in urls.items():
     try:
-        resp = get(service["url"], timeout = 10)
+        resp = get(url, timeout = 10)
         if resp.status_code != 200:
             raise Exception()
 
         write_log(
-            service["name"],
+            name,
             "online",
             round(resp.elapsed.total_seconds() * 1000, 2)
         )
-        status_info[time_key][service["name"]] = [
+        status_info[time_key][name] = [
             1,
             round(resp.elapsed.total_seconds() * 1000, 1)
         ]
 
     except Exception:
-        status_info[time_key][service["name"]] = [0, 0]
+        status_info[time_key][name] = [0, 0]
 
 if len(status_info) > 48:
     del status_info[sorted(status_info.keys())[0]]
 
-print(status_info)
 with gzip.open(log_file, "w+") as fh:
     fh.write(json.dumps(status_info).encode("utf-8"))
 

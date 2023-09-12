@@ -44,7 +44,7 @@ function make_box(container, timestamp, state, ping) {
     box.addEventListener("mouseleave", unregisterPopup);
 }
 
-function add_service(service, success, logs) {
+function add_service(url, name, success, logs) {
 
     // Create object structure
     let tr = document.createElement("tr"),
@@ -63,11 +63,9 @@ function add_service(service, success, logs) {
         header.classList = "color-red no-margin"
         return table.appendChild(tr);
     }
-    header.innerHTML = `<a href = "${service.url}">${service.name}</a>`;
+    header.innerHTML = `<a href = "${url}">${name}</a>`;
 
     // Process log frames
-    logs = logs.map((frame) => frame.split(" "))
-    for (let i = 0; i < 48 - logs.length; i++) make_box(container, 0, "unknown", 0); 
     for (let i = 0; i < logs.length; i++) {
         let [timestamp, state, ping] = logs[i];
         make_box(container, timestamp, state, ping);
@@ -83,22 +81,39 @@ function add_service(service, success, logs) {
     table.appendChild(tr);
 }
 
-async function write_logs(service) {
+async function write_logs() {
     try {
-        let resp = await fetch(`./logs/${service.name}.log`);
-        if (!resp.ok) throw new Error(`Non-200 from service log '${service.name}'!`);
-        add_service(service, true, (await resp.text()).split("\n"));
+
+        // Fetch URLs (for labeling) and make initial request
+        const urls = await (await fetch("./urls.json")).json();
+        const resp = new Response(
+
+            // Pipe everything through a gzip-decompression stream
+            (await fetch(`./logs/main.gz`)).body.pipeThrough(new DecompressionStream("gzip"))
+        );
+        if (!resp.ok) throw new Error(`Non-200 while retrieving main.gz!`);
+        const data = await resp.json();
+
+        // Expand compact JSON into renderable
+        let logs = {}
+        for (let k in data) {
+            for (let name in data[k]) {
+                const info = data[k][name];
+                if (!logs[name]) logs[name] = [];
+                logs[name].push([k, info[0] ? "online" : "offline", info[1]]);
+            }
+        }
+        for (let name in logs) add_service(urls[name], name, true, logs[name]);
 
     } catch (e) {
         console.warn(e);
-        add_service(service, false);
+        add_service(null, null, false);  // Show a "Failed to load" indicator
     }
 }
 
 // Process URLs
 (async () => {
-    let urls = await (await fetch("./urls.json")).json();
-    for (let url of urls) await write_logs(url);
+    await write_logs();
 
     // Loading complete
     main_css.rel = "stylesheet";

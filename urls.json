@@ -1,8 +1,8 @@
-[
-    {"name": "Main site", "url": "https://iipython.dev"},
-    {"name": "Legacy site", "url": "https://old.iipython.dev"},
-    {"name": "Weather Archive", "url": "https://weather.iipython.dev"},
-    {"name": "Geesecraft Archives", "url": "https://gc.iipython.dev"},
-    {"name": "Geesecraft Map", "url": "https://map.iipython.dev"},
-    {"name": "CDN", "url": "https://cdn.iipython.dev"}
-]
+{
+    "Main site": "https://iipython.dev",
+    "Legacy site": "https://old.iipython.dev",
+    "Weather Archive": "https://weather.iipython.dev",
+    "Geesecraft Archives": "https://gc.iipython.dev",
+    "Geesecraft Map": "https://map.iipython.dev",
+    "CDN": "https://cdn.iipython.dev"
+}
