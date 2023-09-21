@@ -58,7 +58,7 @@ div.tooltip p {
 }
 
 /* Colored CSS styles */
-.i-down { background-color: var(--c-red); }
+.i-offline { background-color: var(--c-red); }
 .i-unknown { background-color: var(--c-gray); }
 .i-online { background-color: var(--c-green); }
 .color-red { color: var(--c-red); }
