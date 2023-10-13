@@ -3,5 +3,6 @@
     "Legacy site": "https://old.iipython.dev",
     "Weather Archive": "https://weather.iipython.dev",
     "Geesecraft Archives": "https://gc.iipython.dev",
-    "CDN": "https://cdn.iipython.dev"
+    "CDN": "https://cdn.iipython.dev",
+    "Image Proxy": "https://images.iipython.dev"
 }
