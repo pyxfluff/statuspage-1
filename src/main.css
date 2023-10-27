@@ -1,12 +1,5 @@
 /* Copyright 2023 iiPython */
 
-/* Taken from DmmD.css */
-:root {
-    --c-red: #FF4F4F;
-    --c-gray: #8F8F8F;
-    --c-green: #4FFF4F;
-}
-
 /* Normal styles */
 td {
     padding: 10px;
@@ -26,7 +19,7 @@ td p.no-margin {
     margin-bottom: 0px;
 }
 a:hover {
-    color: #2F7FBF;
+    color: #63A7D9;
     text-decoration: underline;
 }
 .status-container {
@@ -53,13 +46,10 @@ div.tooltip {
 div.tooltip p {
     margin: 0px;
 }
-[data-darkreader-mode = "dynamic"] div.tooltip {
-    background-color: #181a1b;
-}
 
 /* Colored CSS styles */
-.i-offline { background-color: var(--c-red); }
-.i-unknown { background-color: var(--c-gray); }
-.i-online { background-color: var(--c-green); }
-.color-red { color: var(--c-red); }
-.color-green { color: var(--c-green); }
+.i-offline { background-color: #9D0000; }
+.i-unknown { background-color: #575F62; }
+.i-online { background-color: #279D00; }
+.color-red { color: #FF5151; }
+.color-green { color: #51FF51; }
