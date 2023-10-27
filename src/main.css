@@ -4,7 +4,7 @@
 td {
     padding: 10px;
     position: relative;
-    border: 1px solid #fff;
+    border: 1px solid #303436;
 }
 td p {
     margin: 0px;
@@ -39,8 +39,8 @@ a:hover {
 div.tooltip {
     z-index: 999;
     padding: 10px;
-    background-color: #000;
-    border: 1px solid #fff;
+    background-color: #151515;
+    border: 1px solid #303436;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 div.tooltip p {
