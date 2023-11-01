@@ -35,6 +35,23 @@ a:hover {
     opacity: 1;
 }
 
+/* Mobile layout */
+@media screen and (max-width: 700px) {
+    .indicator {
+        width: 8px;
+    }
+}
+@media screen and (max-width: 590px) {
+    .indicator {
+        width: 6px;
+    }
+}
+@media screen and (max-width: 510px) {
+    .indicator {
+        width: 4px;
+    }
+}
+
 /* Popper popups */
 div.tooltip {
     z-index: 999;

@@ -47,6 +47,20 @@
                 position: absolute;
             }
 
+            /* Mobile layout */
+            @media screen and (min-width: 700px) {
+                h3#header {
+                    top: 30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                footer {
+                    left: 50%;
+                    bottom: 30px;
+                    transform: translateX(-50%);
+                }
+            }
+
             /* Loading spinner */
             #spinner {
                 display: inline-block;
