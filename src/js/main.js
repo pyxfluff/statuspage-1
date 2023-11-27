@@ -16,6 +16,7 @@ function make_box(container, timestamp, state, ping) {
     container.appendChild(box);
 
     // Handle hovering
+    if (state == "unknown") return;
     function unregisterPopup() {
         let tooltip = document.getElementById("tooltip");
         if (tooltip) tooltip.remove();
@@ -64,8 +65,9 @@ function add_service(url, name, success, logs) {
     header.innerHTML = `<a href = "${url}">${name}</a>`;
 
     // Process log frames
+    logs = [ ...Array(48 - logs.length).fill([0, "unknown", 0]), ...logs ];
     for (let i = 0; i < 48; i++) {
-        let [timestamp, state, ping] = logs[i] || [0, "unknown", 0];
+        let [timestamp, state, ping] = logs[i];
         make_box(container, timestamp, state, ping);
     }
 
