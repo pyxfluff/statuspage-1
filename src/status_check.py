@@ -27,7 +27,7 @@ time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
 for name, url in urls.items():
     try:
-        resp = get(url, timeout = 10)
+        resp = get(f"{url}/ping", timeout = 10)
         if resp.status_code != 200:
             raise Exception()
 

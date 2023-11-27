@@ -29,10 +29,7 @@ function make_box(container, timestamp, state, ping) {
 
         // Create tooltip
         let tooltip = document.createElement("div");
-        tooltip.innerHTML = `
-            <p>${new Date(timestamp).toLocaleString()}</p>
-            <p>${ping}ms</p>
-        `;
+        tooltip.innerHTML = `<p>${new Date(timestamp).toLocaleString()}</p><p>${ping}ms</p>`;
         tooltip.role = "tooltip";
         tooltip.id = "tooltip";
         tooltip.classList.add("tooltip")
@@ -87,7 +84,7 @@ async function write_logs() {
         // Fetch URLs (for labeling) and make initial request
         const urls = await (await fetch("./urls.json")).json();
         const resp = new Response(
-
+            
             // Pipe everything through a gzip-decompression stream
             (await fetch(`./logs/main.gz`)).body.pipeThrough(new DecompressionStream("gzip"))
         );
