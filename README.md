@@ -21,6 +21,24 @@ Most of the hard work for this repository is done via [`status_check.py`](https:
 
 The client (in reality), only fetches this gzipped file, decompresses it, and loads the status information into the UI. Additionally, it uses [PopperJS](https://popper.js.org/) for the detailed snapshot info when hovering over a timestamp.
 
+## Development
+
+- Clone iiPythonx/statuspage.
+```bash
+git clone git@github.com:iiPythonx/statuspage
+# or alternatively:
+git clone https://github.com/iiPythonx/statuspage
+```
+- Install [http-server](https://npmjs.org/http-server) via package.json.
+```bash
+npm i
+```
+- Launch the development server.
+```bash
+npm run dev
+```
+- Make your changes, commit, push, and pull request.
+
 ## Copyright
 
 MIT license, [more details here](https://github.com/iiPythonx/statuspage/blob/main/LICENSE.txt).
