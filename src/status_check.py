@@ -27,17 +27,17 @@ time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
 for name, url in urls.items():
     try:
-        resp = get(f"{url}/ping", timeout = 10)
-        if resp.status_code != 200:
-            raise Exception()
-
+        resp_main = get(url, timeout = 10)
+        resp_ping = get(f"{url}/ping", timeout = 10)
         status_info[time_key][name] = [
             1,
-            round(resp.elapsed.total_seconds() * 1000, 1)
+            round(resp_main.elapsed.total_seconds() * 1000, 1)
         ]
+        if [resp_main.status_code, resp_ping.status_code] != [200, 200]:
+            raise Exception()
 
     except Exception:
-        status_info[time_key][name] = [0, 0]
+        status_info[time_key][name][0] = 0
 
 if len(status_info) > 48:
     del status_info[sorted(status_info.keys())[0]]
