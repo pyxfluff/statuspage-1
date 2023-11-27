@@ -31,13 +31,12 @@ function make_box(container, timestamp, state, ping) {
         // Create tooltip
         let tooltip = document.createElement("div");
         tooltip.innerHTML = `<p>${new Date(timestamp).toLocaleString()}</p><p>${ping}ms</p>`;
-        tooltip.role = "tooltip";
         tooltip.id = "tooltip";
         tooltip.classList.add("tooltip")
         container.appendChild(tooltip);
 
         // Handle Popper element
-        window.popper = Popper.createPopper(box, tooltip, { modifiers: [{ name: "offset", options: { offset: [0, 12] } }] });
+        window.popper = Popper.createPopper(box, tooltip);
     });
     box.addEventListener("mouseleave", unregisterPopup);
 }

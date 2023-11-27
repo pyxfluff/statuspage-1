@@ -68,6 +68,7 @@ a:hover {
 div.tooltip {
     z-index: 999;
     padding: 10px;
+    position: fixed !important;
     background-color: #151515;
     border: 1px solid #303436;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
