@@ -50,6 +50,7 @@ function add_service(url, name, success, logs) {
         container = document.createElement("div");
 
     tr.style.display = "none";
+    tr.style.width = "fit-content";
     container.className = "status-container";
     tr.append(td)
     td.append(header, container);
@@ -115,5 +116,5 @@ async function write_logs() {
     // Loading complete
     main_css.rel = "stylesheet";
     document.getElementById("spinner").remove();
-    for (let tr of document.getElementsByTagName("tr")) tr.style.display = "block";
+    for (let tr of document.getElementsByTagName("tr")) tr.style.display = "table";
 })();
