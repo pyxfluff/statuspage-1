@@ -64,8 +64,8 @@ function add_service(url, name, success, logs) {
     header.innerHTML = `<a href = "${url}">${name}</a>`;
 
     // Process log frames
-    for (let i = 0; i < logs.length; i++) {
-        let [timestamp, state, ping] = logs[i];
+    for (let i = 0; i < 48; i++) {
+        let [timestamp, state, ping] = logs[i] || [0, "unknown", 0];
         make_box(container, timestamp, state, ping);
     }
 
