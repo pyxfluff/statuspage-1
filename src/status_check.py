@@ -27,13 +27,12 @@ time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
 for name, url in urls.items():
     try:
-        resp_main = get(url, timeout = 10)
-        resp_ping = get(f"{url}/ping", timeout = 10)
+        resp_main = get(f"{url}/_statuscheck/{time_key}", timeout = 10)
         status_info[time_key][name] = [
             1,
             round(resp_main.elapsed.total_seconds() * 1000, 1)
         ]
-        if [resp_main.status_code, resp_ping.status_code] != [200, 200]:
+        if resp_main.status_code != 404:
             raise Exception()
 
     except Exception:
