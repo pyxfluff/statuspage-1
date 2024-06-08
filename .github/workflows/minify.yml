@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - "src/index.html"
+      - "src/down.html"
 
 jobs:
   checkout-minify-push:
