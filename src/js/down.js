@@ -29,6 +29,6 @@ async function write_logs() {
 }
 write_logs();
 const xhr = new XMLHttpRequest();
-xhr.onload = (e) => { if (e.target.status !== 302) location.href = "/"; }
+xhr.onload = (e) => { if (e.target.responseURL !== "https://status.iipython.dev/down") location.href = "/"; }
 xhr.open("HEAD", "https://cdn.iipython.dev", true);
 xhr.send();
