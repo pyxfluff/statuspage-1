@@ -84,11 +84,11 @@ async function write_logs() {
     try {
 
         // Fetch URLs (for labeling) and make initial request
-        const urls = await (await fetch("./urls.json")).json();
+        const urls = await (await fetch("/urls.json")).json();
         const resp = new Response(
             
             // Pipe everything through a gzip-decompression stream
-            (await fetch(`./logs/main.gz`)).body.pipeThrough(new DecompressionStream("gzip"))
+            (await fetch(`/logs/main.gz`)).body.pipeThrough(new DecompressionStream("gzip"))
         );
         if (!resp.ok) throw new Error(`Non-200 while retrieving main.gz!`);
         const data = await resp.json();

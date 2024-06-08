@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale=1" />
+        <meta name = "og:title" content = "iiPython Statuspage" />
+        <meta name = "og:description" content = "Accurate service information, updated hourly." />
+
+        <meta name = "theme-color" content = "#fff" />
+        <meta name = "description" content = "Status page for all of iiPython's web services. If something goes offline, this will be the first to show it." />
+        <meta name = "darkreader-lock" />
+
+        <!-- CSS --> 
+        <style type = "text/css">
+            @font-face {
+                font-family: "Free Pixel";
+                font-style: normal;
+                font-weight: 400;
+                font-display: block;
+                src: url(./src/fonts/free_pixel.woff2) format("woff2");
+            }
+            html, body {
+                color: #E7E5E2;
+                background-color: #181A1B;
+            }
+            * {
+                font-family: "Free Pixel", sans-serif;
+            }
+            body {
+                top: 100px;
+                position: relative;
+                display: flex;
+                text-align: center;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+            table {
+                width: 100%;
+                border: none;
+                border-spacing: 10px;
+            }
+            tbody {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                max-height: 400px;
+                overflow-y: scroll;
+                scrollbar-gutter: stable both-edges;
+            }
+            td {
+                display: flex;
+                padding: 10px;
+                position: relative;
+                border: 1px solid #303436;
+            }
+            td p {
+                margin: 0px;
+            }
+            td p.state {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+            tr {
+                width: 400px;
+                display: table;
+            }
+            a {
+                color: #E7E5E2;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #63A7D9;
+                text-decoration: underline;
+            }
+            .color-red { color: #FF5151; }
+            .color-yellow { color: #ffc107; }
+            ::-webkit-scrollbar {
+                width: 20px;
+            }
+            ::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                background-color: #fff;
+                border-radius: 20px;
+                border: 7px solid transparent;
+                background-clip: content-box;
+            }
+        </style>
+
+        <!-- Icon & page title -->
+        <link rel = "icon" type = "image/x-icon" href = "./favicon.ico">
+        <title>iiPython / Maintenance</title>
+    </head>
+    <body>
+        <h1>SERVICE UNAVAILABLE</h1>
+        <p>My infrastructure is currently undergoing maintenance. Site availability will be limited.</p>
+        <div style = "margin-bottom: 50px;"></div>
+        <table id = "table"><tbody></tbody></table>
+        <footer>Powered by <a href = "/">iiPython / Statuspage</a></footer>
+
+        <!-- JS -->
+        <script src = "./src/js/down.js" async></script>
+    </body>
+</html>
