@@ -27,7 +27,7 @@ time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
 for name, url in urls.items():
     try:
-        resp_main = get(f"{url}/_statuscheck/{time_key}", timeout = 10)
+        resp_main = get(f"{url}/_statuscheck/{time_key}", timeout = 10, allow_redirects = False)
         status_info[time_key][name] = [
             1,
             round(resp_main.elapsed.total_seconds() * 1000, 1)
