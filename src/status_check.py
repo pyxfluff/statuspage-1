@@ -22,6 +22,18 @@ if log_file.is_file():
     with gzip.open(log_file, "r") as fh:
         status_info = json.loads(fh.read())
 
+removed_services = []
+for entry_time, services in status_info.items():
+    for service in services.copy():
+        if service not in urls:
+            if service not in removed_services:
+                removed_services.append(service)
+
+            del status_info[entry_time][service]
+
+for service in removed_services:
+    print(f"[-] Removed no longer existant service '{service}'")
+
 # Perform all status checks
 time_key = str(round(time.time() * 1000))
 status_info[time_key] = {}
