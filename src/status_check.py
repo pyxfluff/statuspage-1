@@ -48,7 +48,7 @@ for name, url in urls.items():
             raise Exception()
 
     except Exception:
-        status_info[time_key][name][0] = 0
+        status_info[time_key][name] = [0, 0]
 
 if len(status_info) > 48:
     del status_info[sorted(status_info.keys())[0]]
