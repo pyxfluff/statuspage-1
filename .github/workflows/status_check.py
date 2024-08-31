@@ -9,7 +9,7 @@ from pathlib import Path
 from requests import get
 
 # Initialization
-root_dir = Path(__file__).parents[1]
+root_dir = Path(__file__).parents[2]
 with open(root_dir / "urls.json", "r") as fh:
     urls = json.loads(fh.read())
 
