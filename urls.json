@@ -1,11 +1,10 @@
 {
     "iiPython Front Page": "https://iipython.dev",
-    "Weather Archive": "https://weather.iipython.dev",
     "Geesecraft Archives": "https://gc.iipython.dev",
     "Public CDN": "https://cdn.iipython.dev",
-    "Consumet API": "https://anisq.iipython.dev/api",
+    "Consumet API": "https://anisq.iipython.dev",
     "File Sharing": "https://files.iipython.dev",
-    "Image Proxy": "https://images.iipython.dev",
+    "Local Network": "https://lan.iipython.dev",
     "Codelet": "https://codelet.codes",
     "Gamepass Server": "https://inv.codelet.codes"
 }
