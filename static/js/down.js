@@ -14,7 +14,7 @@ function add_service(url, name, logs) {
 }
 async function write_logs() {
     const urls = await (await fetch("/urls.json")).json();
-    const resp = new Response((await fetch(`/logs/main.gz`)).body.pipeThrough(new DecompressionStream("gzip")));
+    const resp = new Response((await fetch(`/main.gz`)).body.pipeThrough(new DecompressionStream("gzip")));
     if (!resp.ok) throw new Error(`Non-200 while retrieving main.gz!`);
     const data = await resp.json();
     let logs = {}

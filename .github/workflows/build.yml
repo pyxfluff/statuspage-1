@@ -1,0 +1,57 @@
+name: Build site and push to production
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+  push:
+    paths: ["static/"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+      - name: Perform Service Check
+        run: |
+          python .github/workflows/status_check.py
+          git config --global user.name 'iiPython Automation'
+          git config --global user.email automated@iipython.dev
+          git add -A --force main.gz
+          git commit -am '[Automated] Update system status'
+          git push
+      - name: Install Nova and Build
+        run: |
+          python -m pip install git+https://github.com/iiPythonx/nova bs4 minify-html requests
+          npm i -g csso-cli uglify-js
+          nova build
+          cp main.gz urls.json .build/
+      - name: Push to Github Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .build
+      - name: Deploy to Production
+        id: deployment
+        uses: actions/deploy-pages@v4
