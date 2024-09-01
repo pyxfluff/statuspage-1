@@ -1,24 +1,25 @@
-"use strict";
-
 // Copyright (c) 2023-2024 iiPython
 
+// Reduce filesize
+const _ = document.createElement, __ = document.getElementById;
+
 // Initialization
-const table = document.getElementById("table").firstElementChild;
-const main_css = document.getElementById("maincss");
+const table = __("table").firstElementChild;
 
 // Handle CSS deferring
-main_css.addEventListener("load", () => { main_css.rel = "stylesheet"; });
+const css = __("css");
+css.addEventListener("load", () => main_css.rel = "stylesheet");
 
 // Handle writing logs to the screen
 function make_box(container, timestamp, state, ping) {
-    let box = document.createElement("div");
+    let box = _("div");
     box.classList = `indicator i-${state}`, timestamp = Number(timestamp);
     container.appendChild(box);
 
     // Handle hovering
     if (state == "unknown") return;
     function unregisterPopup() {
-        let tooltip = document.getElementById("tooltip");
+        let tooltip = __("tooltip");
         if (tooltip) tooltip.remove();
         if (window.popper) {
             window.popper.destroy();
@@ -29,7 +30,7 @@ function make_box(container, timestamp, state, ping) {
         unregisterPopup();
 
         // Create tooltip
-        let tooltip = document.createElement("div");
+        let tooltip = _("div");
         tooltip.innerHTML = `<p>${new Date(timestamp).toLocaleString()}</p><p>${ping}ms</p>`;
         tooltip.id = "tooltip";
         tooltip.classList.add("tooltip")
@@ -44,10 +45,10 @@ function make_box(container, timestamp, state, ping) {
 function add_service(url, name, success, logs) {
 
     // Create object structure
-    let tr = document.createElement("tr"),
-        td = document.createElement("td"),
-        header = document.createElement("p"),
-        container = document.createElement("div");
+    let tr = _("tr"),
+        td = _("td"),
+        header = _("p"),
+        container = _("div");
 
     tr.style.display = "none";
     tr.style.width = "fit-content";
@@ -71,7 +72,7 @@ function add_service(url, name, success, logs) {
     }
 
     // Handle the "overall state" section
-    let state_obj = document.createElement("p"), state = logs[logs.length - 1][1];
+    let state_obj = _("p"), state = logs[logs.length - 1][1];
     td.appendChild(state_obj);
     state_obj.innerText = state;
     state_obj.classList = `state color-${(state == "online") ? "green" : "red"}`;
@@ -120,7 +121,7 @@ async function write_logs() {
     await write_logs();
 
     // Loading complete
-    main_css.rel = "stylesheet";
-    document.getElementById("spinner").remove();
-    for (let tr of document.getElementsByTagName("tr")) tr.style.display = "table";
+    css.rel = "stylesheet";
+    __("spinner").remove();
+    for (let tr of document.querySelectorAll("tr")) tr.style.display = "table";
 })();
