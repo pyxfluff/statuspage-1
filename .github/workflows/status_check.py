@@ -9,7 +9,7 @@ from gzip import compress, decompress
 from requests import Session
 
 # Initialization
-root = Path(__file__).parents[2]
+root = Path(__file__).parents[2] / "static"
 urls = json.loads((root / "urls.json").read_text())
 session = Session()
 

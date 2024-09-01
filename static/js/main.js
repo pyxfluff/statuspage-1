@@ -91,18 +91,23 @@ async function write_logs() {
             (await fetch(`/main.gz`)).body.pipeThrough(new DecompressionStream("gzip"))
         );
         if (!resp.ok) throw new Error(`Non-200 while retrieving main.gz!`);
-        const data = await resp.json();
+        const data = (await resp.text()).split("|").map(x => Number(x));
 
         // Expand compact JSON into renderable
-        let logs = {}
-        for (let k in data) {
-            for (let name in data[k]) {
-                const info = data[k][name];
-                if (!logs[name]) logs[name] = [];
-                logs[name].push([k, info[0] ? "online" : "offline", info[1]]);
-            }
+        const timestamps = data.slice(1, 48).map(t => data[0] - t);
+        timestamps.push(data[0]);
+
+        let logs = {};
+        for (let index = 0; index < urls.length; index++) {
+            const down = 48 * (index + 1), up = 48 * (index + 2);
+            const points = data.slice(down, up);
+            logs[urls[index][0]] = points.map((_, point) => [
+                timestamps[point] * 1000,
+                points[point] === 0 ? "offline": points[point] === -1 ? "unknown" : "online",
+                points[point]
+            ])
         }
-        for (let name in logs) add_service(urls[name], name, true, logs[name]);
+        for (let name in logs) add_service(urls.filter(u => u[0] === name)[0][1], name, true, logs[name]);
 
     } catch (e) {
         console.warn(e);

@@ -47,7 +47,6 @@ jobs:
           git add -A --force main.gz
           git commit -am '[Automated] Update system status'
           git push
-          cp main.gz urls.json .build/
       - name: Push to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:
