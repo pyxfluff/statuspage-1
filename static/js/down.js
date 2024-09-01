@@ -29,7 +29,7 @@ async function write_logs() {
             points[point]
         ])
     }
-    for (let name in logs) add_service(urls.filter(u => u[0] === name)[0][1], name, true, logs[name]);
+    for (let name in logs) add_service(urls.filter(u => u[0] === name)[0][1], name, logs[name]);
 }
 write_logs();
 const xhr = new XMLHttpRequest();
