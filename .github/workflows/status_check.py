@@ -2,53 +2,52 @@
 
 # Modules
 import json
-import time
-import gzip
+from time import time
 from pathlib import Path
+from gzip import compress, decompress
 
-from requests import get
+from requests import Session
 
 # Initialization
-root_dir = Path(__file__).parents[2]
-with open(root_dir / "urls.json", "r") as fh:
-    urls = json.loads(fh.read())
+root = Path(__file__).parents[2]
+urls = json.loads((root / "urls.json").read_text())
+session = Session()
 
 # Load existing data
-status_info, log_file = {}, root_dir / "main.gz"
-if log_file.is_file():
-    with gzip.open(log_file, "r") as fh:
-        status_info = json.loads(fh.read())
+status_info, status_file = [], root / "main.gz"
+if status_file.is_file():
+    status_info = decompress(status_file.read_bytes()).decode().split("|")
 
-removed_services = []
-for entry_time, services in status_info.items():
-    for service in services.copy():
-        if service not in urls:
-            if service not in removed_services:
-                removed_services.append(service)
+# Handle shifting existing data
+current_time = round(time())
+if not status_info:
+    status_info += [current_time, *[0] * 47]
 
-            del status_info[entry_time][service]
+offsets = [current_time] + [current_time - offset for offset in (
+    [int(status_info[0])] + \
+    [int(status_info[0]) - int(o) for o in status_info[1:47]]
+)]
+status_info = offsets + status_info[48:]
 
-for service in removed_services:
-    print(f"[-] Removed no longer existant service '{service}'")
+# Perform status checks
+for index, (_, url) in enumerate(urls):
+    down, up = 48 * (index + 1), 48 * (index + 2)
+    if down >= len(status_info):
+        status_info += [-1] * 48
 
-# Perform all status checks
-time_key = str(round(time.time() * 1000))
-status_info[time_key] = {}
-for name, url in urls.items():
     try:
-        resp_main = get(f"{url}/_statuscheck/{time_key}", timeout = 10, allow_redirects = False)
-        status_info[time_key][name] = [
-            1,
-            round(resp_main.elapsed.total_seconds() * 1000, 1)
-        ]
-        if resp_main.status_code != 404:
+        response = session.get(f"{url}/_statuscheck/{current_time}", timeout = 10, allow_redirects = False)
+        if response.status_code != 404:
             raise Exception()
 
+        response = round(response.elapsed.total_seconds() * 1000, 1)
+
     except Exception:
-        status_info[time_key][name] = [0, 0]
+        response = 0
 
-if len(status_info) > 48:
-    del status_info[sorted(status_info.keys())[0]]
+    status_info = status_info[:down] + \
+                  status_info[(down + 1):up] + [response] + \
+                  status_info[up:]
 
-with gzip.open(log_file, "wb") as fh:
-    fh.write(json.dumps(status_info).encode("utf-8"))
+# Save to disk
+status_file.write_bytes(compress("|".join(map(lambda x: str(x), status_info)).encode("ascii")))
