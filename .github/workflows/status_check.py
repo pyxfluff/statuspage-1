@@ -23,11 +23,9 @@ current_time = round(time())
 if not status_info:
     status_info += [current_time, *[0] * 47]
 
-offsets = [current_time] + [current_time - offset for offset in (
-    [int(status_info[0])] + \
-    [int(status_info[0]) - int(o) for o in status_info[1:47]]
-)]
-status_info = offsets + status_info[48:]
+offsets = [int(o) for o in status_info[2:48]] + [0]
+timestamps = [int(status_info[0]) - offset for offset in offsets]
+status_info = [current_time] + [current_time - t for t in timestamps] + status_info[48:]
 
 # Perform status checks
 for index, (_, url) in enumerate(urls):
