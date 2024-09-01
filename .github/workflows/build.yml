@@ -44,7 +44,7 @@ jobs:
           python .github/workflows/status_check.py
           git config --global user.name 'iiPython Automation'
           git config --global user.email automated@iipython.dev
-          git add -A --force main.gz
+          git add -A --force static/main.gz
           git commit -am '[Automated] Update system status'
           git push
       - name: Push to Github Pages
