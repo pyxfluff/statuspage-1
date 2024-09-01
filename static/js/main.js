@@ -104,7 +104,7 @@ async function write_logs() {
             const points = data.slice(down, up);
             logs[urls[index][0]] = points.map((_, point) => [
                 timestamps[point] * 1000,
-                points[point] === 0 ? "offline": points[point] === -1 ? "unknown" : "online",
+                points[point] === 0 ? "offline" : points[point] === -1 ? "unknown" : "online",
                 points[point]
             ])
         }
