@@ -3,8 +3,8 @@
 (async () => {
 
     // Reduce filesize
-    const E = (e) => document.createElement(e);
-    const G = (e) => document.getElementById(e);
+    const E = e => document.createElement(e);
+    const G = e => document.getElementById(e);
 
     // Initialization
     const table = document.querySelector("table").firstElementChild;
