@@ -36,7 +36,7 @@ a:hover {
 }
 .status-container {
     display: flex;
-    gap: 3px;
+    gap: 1px;
 }
 .indicator {
     height: 20px;
