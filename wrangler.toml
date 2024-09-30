@@ -1,5 +1,5 @@
 name = "iipython-status-page"
-main = "worker/index.js"
+main = "fetch_status.js"
 compatibility_date = "2024-09-28"
 
 # Fuck off Cloudflare

@@ -9,7 +9,7 @@ const services = [
     { name: "Local Network", url: "https://lan.iipython.dev" },
     { name: "Codelet", url: "https://codelet.codes" },
     { name: "Inventory Service", url: "https://inv.codelet.codes" },
-]
+];
 
 async function fetch_status() {
     const slice = { time: Date.now() / 1000 | 0, services: {} };
@@ -33,6 +33,7 @@ async function fetch_status() {
 export default {
     async scheduled(_, env, ctx) {
         ctx.waitUntil((async () => {
+            await env.statuspage_data.put("urls", services);
 
             // Handle existing data
             let records = JSON.parse(await env.statuspage_data.get("records")) || [];
