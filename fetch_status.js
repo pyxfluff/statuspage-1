@@ -22,7 +22,9 @@ async function fetch_status() {
 
         try {
             const start = performance.now()
-            const up = (await fetch(`${url}/_statuscheck/${slice.time}`, { redirect: "manual" })).status === 404;
+            const result = (await fetch(`${url}/?check=${slice.time}`, { redirect: "manual" }));
+            const up = (result.status === 200 || result.status === 404);
+
             clearTimeout(timeout);
             slice.services[name] = up ? Math.round(performance.now() - start) : 0;
 
@@ -38,7 +40,7 @@ export default {
 
             // Handle existing data
             let records = JSON.parse(await env.statuspage_data.get("records")) || [];
-            if (records.length === 80) records = records.slice(1);
+            if (records.length === 128) records = records.slice(1);
 
             // Go fetch status information
             records.push(await fetch_status());
