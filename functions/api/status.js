@@ -3,8 +3,8 @@
 export async function onRequestGet(context) {
     try {
         return new Response(JSON.stringify({
-            urls: JSON.parse(await context.env.statuspage_data.get("urls", { cacheTtl: 86400 })),
-            records: JSON.parse(await context.env.statuspage_data.get("records", { cacheTtl: 3600 }))
+            urls: JSON.parse(await context.env.statuspage_data.get("urls", { cacheTtl: 900 })),
+            records: JSON.parse(await context.env.statuspage_data.get("records", { cacheTtl: 900 }))
         }));
     } catch (e) {
         console.error(e);
