@@ -1,0 +1,9 @@
+[project]
+name = "iipython-status-page"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "minify-html>=0.15.0",
+    "nova-framework>=0.9.1",
+]

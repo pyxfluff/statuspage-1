@@ -9,3 +9,12 @@ send_metrics = false
 # Force enable keeping logs
 [observability]
 enabled = true
+
+# Fetch data every hour
+[triggers]
+crons = ["0 * * * *"]
+
+# Setup KV
+[[kv_namespaces]]
+binding = "statuspage_data"
+id = "80f4f9f46ae84fb18aa2038717aabdfb"

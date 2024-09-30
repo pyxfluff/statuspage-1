@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <title>Example Statuspage</title>
+    </head>
+    <body>
+        <script>
+            (async () => {
+                const result = await (await fetch("/api/status")).json();
+                console.log(result);
+            })();
+        </script>
+    </body>
+</html>
