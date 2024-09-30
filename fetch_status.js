@@ -33,7 +33,7 @@ async function fetch_status() {
 export default {
     async scheduled(_, env, ctx) {
         ctx.waitUntil((async () => {
-            await env.statuspage_data.put("urls", services);
+            await env.statuspage_data.put("urls", JSON.stringify(services));
 
             // Handle existing data
             let records = JSON.parse(await env.statuspage_data.get("records")) || [];
