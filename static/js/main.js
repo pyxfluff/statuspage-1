@@ -98,7 +98,7 @@
                 for (const service in record.services) {
                     if (!logs[service]) logs[service] = [];
                     logs[service].push([
-                        record.time,
+                        record.time * 1000,
                         record.services[service] === 0 ? "offline" : "online",
                         record.services[service]
                     ]);
