@@ -1,2 +1,2 @@
-.venv/
-.build/
+node_modules/
+.wrangler
