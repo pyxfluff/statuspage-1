@@ -22,8 +22,8 @@ async function fetch_status() {
 
         try {
             const start = performance.now()
-            const result = (await fetch(`${url}/?check=${slice.time}`, { redirect: "manual" }));
-            const up = (result.status === 200 || result.status === 404);
+            const result = (await fetch(url, { redirect: "manual" }));
+            const up = (result.status === 200 || result.status === 404 || result.status === 302);
 
             clearTimeout(timeout);
             slice.services[name] = up ? Math.round(performance.now() - start) : 0;
