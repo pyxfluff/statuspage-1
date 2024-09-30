@@ -95,7 +95,7 @@
             // Setup log information
             let logs = {};
             for (const record of data.records) {
-                for (const service of record.services) {
+                for (const service in record.services) {
                     if (!logs[service]) logs[service] = [];
                     logs[service].push([
                         record.time,
