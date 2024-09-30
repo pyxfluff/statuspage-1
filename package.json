@@ -1,6 +1,6 @@
 {
     "name": "iipython-status-page",
-    "devDependencies": {
+    "dependencies": {
         "csso-cli": "^4.0.2",
         "uglify-js": "^3.19.3"
     }
