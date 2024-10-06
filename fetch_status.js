@@ -40,7 +40,7 @@ export default {
 
             // Handle existing data
             let records = JSON.parse(await env.statuspage_data.get("records")) || [];
-            if (records.length === 155) records = records.slice(1);
+            if (records.length === 160) records = records.slice(1);
 
             // Go fetch status information
             records.push(await fetch_status());

@@ -68,8 +68,8 @@
         header.innerHTML = `<a href = "${url}">${name}</a>`;
 
         // Process log frames
-        logs = [ ...Array(155 - logs.length).fill([0, "unknown", 0]), ...logs ];
-        for (let i = 0; i < 155; i++) {
+        logs = [ ...Array(160 - logs.length).fill([0, "unknown", 0]), ...logs ];
+        for (let i = 0; i < 160; i++) {
             let [timestamp, state, ping] = logs[i];
             make_box(container, timestamp, state, ping);
         }
