@@ -2,10 +2,10 @@
 
 const services = [
     { name: "Homepage", url: "https://notpyx.me" },
-    { name: "Homepage (old)", url: "https://darkpixlz.com" },
+    // { name: "Homepage (old)", url: "https://darkpixlz.com" },
     { name: "Navidrome", url: "https://music.notpyx.me" },
     { name: "Roblox Proxy", url: "https://rblx.notpyx.me" },
-    { name: "Roblox Proxy (old)", url: "https://rblxproxy.darkpixlz.com" },
+    // { name: "Roblox Proxy (old)", url: "https://rblxproxy.darkpixlz.com" },
     { name: "Administer", url: "https://administer.notpyx.me" },
     { name: "Administer Documentation", url: "https://administer-docs.notpyx.me" },
     { name: "Codelet", url: "https://codelet.codes" },
